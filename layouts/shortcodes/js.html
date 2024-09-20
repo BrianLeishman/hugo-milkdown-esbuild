@@ -1,0 +1,8 @@
+hello!
+
+<div id="editor"></div>
+
+{{ $js := resources.Get `/ts/index.ts` }}
+{{ $opts := dict `target` `es6`  `minify` true  `sourcemap` `external`  `targetPath` `js/main.min.js` }}
+{{ $js = $js | js.Build $opts | fingerprint }}
+<script src="{{ $js.RelPermalink }}"></script>
