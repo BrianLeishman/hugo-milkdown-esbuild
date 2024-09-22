@@ -2,3 +2,11 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
 theme = 'ananke'
+
+[module]
+    [[module.mounts]]
+        source = 'assets'
+        target = 'assets'
+    [[module.mounts]]
+        source = 'node_modules/@milkdown'
+        target = 'assets/@milkdown'

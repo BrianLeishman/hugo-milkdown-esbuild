@@ -1,8 +1,17 @@
 hello!
 
+{{ $css := resources.Get `@milkdown/crepe/lib/theme/common/style.css` }}
+<link href="{{ $css.RelPermalink }}" rel="stylesheet" />
+
+{{ $css := resources.Get `@milkdown/crepe/lib/theme/crepe/style.css` }}
+<link href="{{ $css.RelPermalink }}" rel="stylesheet" />
+
+{{ $css := resources.Get `@milkdown/crepe/lib/theme/frame-dark/style.css` }}
+<link href="{{ $css.RelPermalink }}" rel="stylesheet" />
+
 <div id="editor"></div>
 
 {{ $js := resources.Get `/ts/index.ts` }}
-{{ $opts := dict `target` `es6`  `minify` true  `sourcemap` `external`  `targetPath` `js/main.min.js` }}
+{{ $opts := dict `target` `es2016`  `minify` true  `sourcemap` `external`  `splitting` true  `targetPath` `/js/index.mjs` }}
 {{ $js = $js | js.Build $opts | fingerprint }}
-<script src="{{ $js.RelPermalink }}"></script>
+<script src="{{ $js.RelPermalink }}" type="module"></script>
