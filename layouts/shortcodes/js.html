@@ -1,7 +1,9 @@
 hello!
 
-{{ $css := resources.Get `@milkdown/crepe/lib/theme/common/style.css` }}
-<link href="{{ $css.RelPermalink }}" rel="stylesheet" />
+{{ $css := resources.Match `@milkdown/crepe/lib/theme/common/**` }}
+{{ range $css }}
+    <link href="{{ .RelPermalink }}" rel="stylesheet" />
+{{ end }}
 
 {{ $css := resources.Get `@milkdown/crepe/lib/theme/crepe/style.css` }}
 <link href="{{ $css.RelPermalink }}" rel="stylesheet" />
